@@ -1,0 +1,15 @@
+version: "3"
+services:
+  fluentd:
+    container_name: fluentd
+    user: root
+    build:
+      context: .
+    image: fluentd
+    volumes:
+    - /var/lib/docker/containers:/fluentd/log/containers
+    # - ./file:fluentd/log/files/
+    - ./configurations:/fluentd/etc/
+    - ./logs:/output/
+    logging:
+      driver: "local"
